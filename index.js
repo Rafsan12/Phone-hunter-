@@ -5,7 +5,7 @@ const searchBtn = document.getElementById('search-btn');
 const msgField = document.querySelector('.message');
 const showAllBtn = document.getElementById('show-all');
 
-// Fetch API
+//  API
 const fetchAPI = async text => {
     const url = `https://openapi.programming-hero.com/api/phones?search=${text}`;
     const response = await fetch(url);
@@ -21,12 +21,12 @@ const fetchAPI = async text => {
     spinner(false); // Hide Spinner
 }
 
-// Call Popular IPhones (Default)
+// Call Popular IPhones 
 fetchAPI('iphone');
 
 // Display Results
 const displayResult = data => {
-    removeAllChildNodes(resultWrapper); // Remove Previous Results
+    removeAllChildNodes(resultWrapper); 
     data?.map((phone, index) => {
         const { image, phone_name, brand, slug } = phone;
 
@@ -62,7 +62,7 @@ const displayResult = data => {
     }
 }
 
-// Load Phone Details (Function)
+// Load Phone Details 
 const modalPreloader = document.querySelector('.preloader');
 const singleName = document.getElementById('name');
 const singleImage = document.getElementById('image');
@@ -81,13 +81,13 @@ const loadDetails = async slug => {
     modalPreloader.style.display = 'flex';
     modalPreloader.style.opacity = '1';
 
-    // Fetch API
+    //  API
     const url = `https://openapi.programming-hero.com/api/phone/${slug}`;
     const response = await fetch(url);
     const results = await response.json();
     const data = results.data;
 
-    // Object Destructuring (With default value for undefined Property)
+    // Object Destructuring 
     const {
         name, image, brand, releaseDate,
         mainFeatures: { storage, displaySize, chipSet, memory, sensors } = { storage: 'N/A', displaySize: 'N/A', chipSet: 'N/A', memory: 'N/A', sensors: 'N/A' },
